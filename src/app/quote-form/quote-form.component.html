@@ -1,0 +1,20 @@
+
+<div class='form-group'>
+  
+  <form (ngSubmit)="publish()" #quotesForm = 'ngForm'>
+    <div class='input-group'>
+      <input type="text" name='name' class='quote-details' placeholder="Enter Your Name" id="username" required [(ngModel)] = 'userQuote.name'>
+      <input type="text" name='author' class='quote-details' placeholder="Enter Author's Name" id="author" required [(ngModel)] = 'userQuote.author'>
+    </div>
+    <div class='input-group'>
+      <input class='quote-input' name='quote' type="text" placeholder="Enter Quote" id="actual-quote" required [(ngModel)] = 'userQuote.quote'>
+    </div>
+    <div>
+      <input name='timePublished' type="hidden" value="currentDate()" [(ngModel)] = 'userQuote.timePublished'>
+      <input name='upVotes' type="hidden" value="defaultVote()" [(ngModel)] = 'userQuote.upVotes'>
+      <input name='downVotes' type="hidden" value="defaultVote()" [(ngModel)] = 'userQuote.downVotes'>
+    </div>
+  
+    <input class='submit-btn' type="submit" [disabled]="!quotesForm.valid" value="Publish">
+  </form> 
+</div>

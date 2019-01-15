@@ -1,0 +1,43 @@
+
+<div class='container'>
+  <button class='btn' (click)='showForm()' *ngIf="add; else exitForm">+ Add Quote</button>
+  <ng-template #exitForm>
+    <button class='btn' (click)='showForm()'>Cancel</button>
+  </ng-template>
+  <app-quote-form (newQuotes) = "addQuote($event)"></app-quote-form>
+  <div class='row'>
+    <li *ngFor="let quoted of quotes; let i = index" class='card col'>
+      <div class='quote'>
+        <div class='details'>
+          <span class='to-left'>{{quoted.name}}</span>
+          <span class='to-right'>{{quoted.timePublished}}</span>
+        </div>
+        <!-- Quote goes here -->
+        <div class='main-quote'>
+          <p>"{{quoted.quote}}"</p>
+        </div>
+        
+        <div class='details'>
+          <p id='author'>- {{quoted.author}}</p>
+          <div class='votes'>
+            <span id="upvote" (click)='upVotes(quoted, i)'>
+              <i class="material-icons">thumb_up_alt</i>
+              <p>{{quoted.upVotes}} Likes</p>
+            </span>
+            <span id="downvote" (click)='downVotes(quoted, i)'>
+              <i class="material-icons">thumb_down_alt</i>
+              <p>{{quoted.downVotes}} Dislikes</p>
+            </span>
+            <span class="delete to-right">
+              <label for="" (click)="deleteQuote(quoted, i)"><i class="material-icons">delete_alt</i></label>
+            </span>
+          </div>
+          
+        </div>
+
+      </div>
+    </li>
+  </div>
+</div>
+
+
